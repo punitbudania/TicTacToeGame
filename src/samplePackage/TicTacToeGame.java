@@ -17,6 +17,8 @@ public class TicTacToeGame
 		firstMove();
 	}
 	
+	
+	
 	private static void createBoard()   //game board created
 	{
 		board = new char[10];
@@ -25,6 +27,8 @@ public class TicTacToeGame
 			board[i] = ' ';
 		}
 	}
+	
+	
 	
 	private static void choice()     // player can choose between x and o.
 	{
@@ -43,6 +47,8 @@ public class TicTacToeGame
 		}
 		System.out.println("player choose: " + player);
 	}
+	
+	
 	
 	private static void displayBoard()  //displaying board
 	{
@@ -64,6 +70,8 @@ public class TicTacToeGame
 		}
 	}
 	
+	
+	
 	private static void userMove(char player)  //user's move
 	{
 		System.out.println("\nSlect an index to make your move");
@@ -83,12 +91,58 @@ public class TicTacToeGame
 		}
 	}
 	
+	
+	
 	private static void computerMove(char computer)  // computer's move
 	{
 		boolean stop = false;
 		while(!stop)
 		{
 			int k = (int) Math.floor(Math.random()*100)%10;
+			//if(k!=0)
+			
+			for (int a=1; a<10; a++)
+			{
+				if(board[a]==' ')
+				{
+					board[a] = computer;
+					if(winningCondition(computer)==true)
+					{
+						board[a] = computer;
+						displayBoard();
+						System.out.println("\nComputer Won");
+						stop = true;
+						//userMove(player);
+						break;
+					}
+					else
+					{
+						board[a]=' ';
+					}
+				}
+			}
+			
+			for (int r=1; r<10; r++)
+			{
+				if(board[r]==' ')
+				{
+					board[r] = player;
+					if(winningCondition(player)==true)
+					{
+						board[r] = computer;
+						displayBoard();
+						System.out.println("\nUser's turn");
+						stop = true;
+						userMove(player);
+						break;
+					}
+					else
+					{
+						board[r]=' ';
+					}
+				}
+			}
+			
 			if(k!=0)
 			{	
 				if (board[k] == ' ')
@@ -108,6 +162,8 @@ public class TicTacToeGame
 		}
 	}
 	
+	
+	
 	private static void firstMove()    // toss for first move
 	{
 		int t = (int) Math.floor(Math.random()*10)%2;
@@ -121,5 +177,19 @@ public class TicTacToeGame
 			System.out.println("\nComputer will make first move");
 			computerMove(computer);
 		}
+	}
+	
+	
+	
+	private static boolean winningCondition(char ch)
+	{
+		return((board[1] == ch && board[2] == ch && board[3] == ch)
+				|| (board[4] == ch && board[5] == ch && board[6] == ch)
+				|| (board[7] == ch && board[8] == ch && board[9] == ch)
+				|| (board[1] == ch && board[4] == ch && board[7] == ch)
+				|| (board[2] == ch && board[5] == ch && board[8] == ch)
+				|| (board[3] == ch && board[6] == ch && board[9] == ch)
+				|| (board[1] == ch && board[5] == ch && board[9] == ch)
+				|| (board[7] == ch && board[5] == ch && board[3] == ch));
 	}
 }
