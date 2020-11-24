@@ -75,14 +75,14 @@ public class TicTacToeGame
 			board[index] = player;
 			displayBoard();
 			System.out.println("\nComputer's turn");
-			//computerMove(computer);
+			computerMove(computer);
 		}
 		else
 		{
 			System.out.println("Index is not free");
 		}
 	}
-	/*
+	
 	private static void computerMove(char computer)  // computer's move
 	{
 		boolean stop = false;
@@ -106,7 +106,7 @@ public class TicTacToeGame
 				}
 			}
 		}
-	}*/
+	}
 	
 	private static void firstMove()    // toss for first move
 	{
@@ -119,7 +119,7 @@ public class TicTacToeGame
 		else
 		{
 			System.out.println("\nComputer will make first move");
-			//computerMove(computer);
+			computerMove(computer);
 		}
 	}
 }
