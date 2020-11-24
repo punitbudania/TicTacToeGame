@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class TicTacToeGame
 {
-	public static char[] board;
+	private static char[] board;
+	private static char player;
+	private static char computer;
 	
 	public static void main(String[] args)
 	{
@@ -13,7 +15,7 @@ public class TicTacToeGame
 		choice();
 	}
 	
-	public static void createBoard()   //game board created
+	private static void createBoard()   //game board created
 	{
 		board = new char[10];
 		for(int i=1; i<10; i++)
@@ -22,11 +24,19 @@ public class TicTacToeGame
 		}
 	}
 	
-	public static void choice()     // player can choose between x and o.
+	private static void choice()     // player can choose between x and o.
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose x or o");
-		String c = sc.next();
-		System.out.println("you choose: " + c);
+		char player = sc.next().charAt(0);
+		if (player == 'o')
+		{
+			computer = 'x';
+		}
+		else
+		{
+			computer = 'o';
+		}
+		System.out.println("player choose: " + player);
 	}
 }
