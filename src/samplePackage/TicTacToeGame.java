@@ -14,6 +14,7 @@ public class TicTacToeGame
 		createBoard();
 		choice();
 		displayBoard();
+		userMove();
 	}
 	
 	private static void createBoard()   //game board created
@@ -58,6 +59,22 @@ public class TicTacToeGame
 			{
 				System.out.print(" [" + j + "] |");
 			}
+		}
+	}
+	
+	private static void userMove()  //user's first move
+	{
+		System.out.println("\nSlect an index to make your move");
+		Scanner any = new Scanner(System.in);
+		int index = any.nextInt();
+		if (board[index] == ' ')
+		{
+			System.out.println("Index is free");
+			board[index] = player;
+		}
+		else
+		{
+			System.out.println("Index is not free");
 		}
 	}
 }
