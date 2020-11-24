@@ -12,9 +12,12 @@ public class TicTacToeGame
 	{
 		System.out.println("Welcome to Tic Tac Toe Game");
 		createBoard();
-		choice();
+		
+		char player = choice();
 		displayBoard();
-		userMove();
+		userMove(player);
+		//displayBoard();
+		//System.out.println(board);
 	}
 	
 	private static void createBoard()   //game board created
@@ -26,7 +29,7 @@ public class TicTacToeGame
 		}
 	}
 	
-	private static void choice()     // player can choose between x and o.
+	private static char choice()     // player can choose between x and o.
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose X or O");
@@ -40,6 +43,7 @@ public class TicTacToeGame
 			computer = 'O';
 		}
 		System.out.println("player choose: " + player);
+		return player;
 	}
 	
 	private static void displayBoard()  //displaying board
@@ -48,21 +52,21 @@ public class TicTacToeGame
 		{
 			if (j%3 == 0 && j<9)
 			{
-				System.out.print(" [" + j + "]");
-				System.out.println("\n-----|-----|----");
+				System.out.print("  " + board[j] +" ");
+				System.out.println("\n-----|-----|-----");
 			}
 			else if (j==9)
 			{
-				System.out.print(" [" + j + "]");
+				System.out.print("  " +board[j]+ " ");
 			}
 			else
 			{
-				System.out.print(" [" + j + "] |");
+				System.out.print("  " + board[j] + "  |");
 			}
 		}
 	}
 	
-	private static void userMove()  //user's first move
+	private static void userMove(char player)  //user's first move
 	{
 		System.out.println("\nSlect an index to make your move");
 		Scanner any = new Scanner(System.in);
@@ -71,6 +75,7 @@ public class TicTacToeGame
 		{
 			System.out.println("Index is free");
 			board[index] = player;
+			displayBoard();
 		}
 		else
 		{
