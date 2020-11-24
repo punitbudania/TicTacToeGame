@@ -13,6 +13,7 @@ public class TicTacToeGame
 		System.out.println("Welcome to Tic Tac Toe Game");
 		createBoard();
 		choice();
+		displayBoard();
 	}
 	
 	private static void createBoard()   //game board created
@@ -27,16 +28,36 @@ public class TicTacToeGame
 	private static void choice()     // player can choose between x and o.
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Choose x or o");
+		System.out.println("Choose X or O");
 		char player = sc.next().charAt(0);
-		if (player == 'o')
+		if (player == 'O')
 		{
-			computer = 'x';
+			computer = 'X';
 		}
 		else
 		{
-			computer = 'o';
+			computer = 'O';
 		}
 		System.out.println("player choose: " + player);
+	}
+	
+	private static void displayBoard()  //displaying board
+	{
+		for (int j=1; j<10; j++)
+		{
+			if (j%3 == 0 && j<9)
+			{
+				System.out.print(" [" + j + "]");
+				System.out.println("\n-----|-----|----");
+			}
+			else if (j==9)
+			{
+				System.out.print(" [" + j + "]");
+			}
+			else
+			{
+				System.out.print(" [" + j + "] |");
+			}
+		}
 	}
 }
