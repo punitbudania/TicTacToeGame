@@ -1,7 +1,5 @@
 package samplePackage;
 
-import java.util.Arrays;
-
 public class TicTacToeGame
 {
 	public static char[] board;
@@ -15,6 +13,9 @@ public class TicTacToeGame
 	public static void createBoard()
 	{
 		board = new char[10];
-		Arrays.fill(board, ' ');
+		for(int i=1; i<10; i++)
+		{
+			board[i] = ' ';
+		}
 	}
 }
