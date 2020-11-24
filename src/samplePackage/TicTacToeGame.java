@@ -12,11 +12,9 @@ public class TicTacToeGame
 	{
 		System.out.println("Welcome to Tic Tac Toe Game");
 		createBoard();
-		
-		//char player = choice();
-		//displayBoard();
+		choice();
+		displayBoard();
 		firstMove();
-		//userMove(player);
 	}
 	
 	private static void createBoard()   //game board created
@@ -28,21 +26,22 @@ public class TicTacToeGame
 		}
 	}
 	
-	private static char choice()     // player can choose between x and o.
+	private static void choice()     // player can choose between x and o.
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose X or O");
-		char player = sc.next().charAt(0);
-		if (player == 'O')
+		char user = sc.next().charAt(0);
+		if (user == 'O')
 		{
 			computer = 'X';
+			player = 'O';
 		}
 		else
 		{
 			computer = 'O';
+			player = 'X';
 		}
 		System.out.println("player choose: " + player);
-		return player;
 	}
 	
 	private static void displayBoard()  //displaying board
@@ -65,7 +64,7 @@ public class TicTacToeGame
 		}
 	}
 	
-	private static void userMove(char player)  //user's first move
+	private static void userMove(char player)  //user's move
 	{
 		System.out.println("\nSlect an index to make your move");
 		Scanner any = new Scanner(System.in);
@@ -75,23 +74,52 @@ public class TicTacToeGame
 			System.out.println("Index is free");
 			board[index] = player;
 			displayBoard();
+			System.out.println("\nComputer's turn");
+			//computerMove(computer);
 		}
 		else
 		{
 			System.out.println("Index is not free");
 		}
 	}
+	/*
+	private static void computerMove(char computer)  // computer's move
+	{
+		boolean stop = false;
+		while(!stop)
+		{
+			int k = (int) Math.floor(Math.random()*100)%10;
+			if(k!=0)
+			{	
+				if (board[k] == ' ')
+				{
+					System.out.println("Index is free");
+					board[k] = computer;
+					displayBoard();
+					System.out.println("\nUser's turn");
+					stop = true;
+					userMove(player);
+				}
+				else
+				{
+					System.out.println("Index is not free");
+				}
+			}
+		}
+	}*/
 	
-	private static void firstMove()
+	private static void firstMove()    // toss for first move
 	{
 		int t = (int) Math.floor(Math.random()*10)%2;
 		if (t==1)
 		{
 			System.out.println("\nPlayer will make first move");
+			userMove(player);
 		}
 		else
 		{
 			System.out.println("\nComputer will make first move");
+			//computerMove(computer);
 		}
 	}
 }
