@@ -13,11 +13,10 @@ public class TicTacToeGame
 		System.out.println("Welcome to Tic Tac Toe Game");
 		createBoard();
 		
-		char player = choice();
-		displayBoard();
-		userMove(player);
+		//char player = choice();
 		//displayBoard();
-		//System.out.println(board);
+		firstMove();
+		//userMove(player);
 	}
 	
 	private static void createBoard()   //game board created
@@ -80,6 +79,19 @@ public class TicTacToeGame
 		else
 		{
 			System.out.println("Index is not free");
+		}
+	}
+	
+	private static void firstMove()
+	{
+		int t = (int) Math.floor(Math.random()*10)%2;
+		if (t==1)
+		{
+			System.out.println("\nPlayer will make first move");
+		}
+		else
+		{
+			System.out.println("\nComputer will make first move");
 		}
 	}
 }
