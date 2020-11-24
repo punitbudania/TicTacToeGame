@@ -143,6 +143,13 @@ public class TicTacToeGame
 				}
 			}
 			
+			if(board[1]==' ') board[1]=computer;
+			else if(board[3]==' ') board[3]=computer;
+			else if(board[7]==' ') board[7]=computer;
+			else if(board[9]==' ') board[9]=computer;
+			
+			
+			
 			if(k!=0)
 			{	
 				if (board[k] == ' ')
