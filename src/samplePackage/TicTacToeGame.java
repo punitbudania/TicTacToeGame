@@ -72,34 +72,47 @@ public class TicTacToeGame
 	
 	
 	
-	private static void userMove(char player)  //user's move
+	private static void userMove()  //user's move
 	{
-		System.out.println("\nSlect an index to make your move");
-		Scanner any = new Scanner(System.in);
-		int index = any.nextInt();
-		if (board[index] == ' ')
+		int y = 0;
+		boolean found = false;
+		while(!found)
 		{
-			System.out.println("Index is free");
-			board[index] = player;
-			displayBoard();
-			System.out.println("\nComputer's turn");
-			computerMove(computer);
-		}
-		else
-		{
-			System.out.println("Index is not free");
+			System.out.println("\nSlect an index to make your move");
+			Scanner any = new Scanner(System.in);
+			int index = any.nextInt();
+			if (board[index] == ' ')
+			{
+				System.out.println("Index is free");
+				board[index] = player;
+				displayBoard();
+				if(winningCondition(player)==true)
+				{
+					System.out.println("\nPlayer Won");
+					found = true;
+				}
+				else
+				{
+					System.out.println("\nComputer's turn");
+					computerMove();
+				}
+			}
+			else
+			{
+				System.out.println("Index is not free");
+			}
 		}
 	}
 	
 	
 	
-	private static void computerMove(char computer)  // computer's move
+	private static void computerMove()  // computer's move
 	{
 		boolean stop = false;
+		int z = 0;
+		int t = 0;
 		while(!stop)
 		{
-			int k = (int) Math.floor(Math.random()*100)%10;
-			//if(k!=0)
 			
 			for (int a=1; a<10; a++)
 			{
@@ -112,7 +125,7 @@ public class TicTacToeGame
 						displayBoard();
 						System.out.println("\nComputer Won");
 						stop = true;
-						//userMove(player);
+						z=1;
 						break;
 					}
 					else
@@ -121,53 +134,113 @@ public class TicTacToeGame
 					}
 				}
 			}
-			
-			for (int r=1; r<10; r++)
+			stop = true;
+		}
+		
+		if(z==0)
+		{
+			boolean know = false;
+			while(!know)
 			{
-				if(board[r]==' ')
+				for (int r=1; r<10; r++)
 				{
-					board[r] = player;
-					if(winningCondition(player)==true)
+					if(board[r]==' ')
 					{
-						board[r] = computer;
+						board[r] = player;
+						if(winningCondition(player)==true)
+						{
+							board[r] = computer;
+							displayBoard();
+							System.out.println("\nUser's turn");
+							know = true;
+							t=1;
+							userMove();
+							break;
+						}
+						else
+						{
+							board[r]=' ';
+						}
+					}
+				}
+				know = true;
+			}	
+		}
+			
+		if(t==0 && z==0)
+		{	
+				boolean let = false;
+				while(!let)
+				{
+					if(board[1]==' ') 
+					{
+						board[1]=computer;
 						displayBoard();
 						System.out.println("\nUser's turn");
 						stop = true;
-						userMove(player);
+						userMove();
+						break;
+					}
+					else if(board[3]==' ')
+					{
+						board[3]=computer;
+						displayBoard();
+						System.out.println("\nUser's turn");
+						stop = true;
+						userMove();
+						break;
+					}
+					else if(board[7]==' ')
+					{
+						board[7]=computer;
+						displayBoard();
+						System.out.println("\nUser's turn");
+						stop = true;
+						userMove();
+						break;
+					}
+					else if(board[9]==' ')
+					{
+						board[9]=computer;
+						displayBoard();
+						System.out.println("\nUser's turn");
+						stop = true;
+						userMove();
+						break;
+					}
+					else if(board[5]==' ')
+					{
+						board[5]=computer;
+						displayBoard();
+						System.out.println("\nUser's turn");
+						stop = true;
+						userMove();
 						break;
 					}
 					else
 					{
-						board[r]=' ';
-					}
-				}
-			}
-			
-			if(board[1]==' ') board[1]=computer;
-			else if(board[3]==' ') board[3]=computer;
-			else if(board[7]==' ') board[7]=computer;
-			else if(board[9]==' ') board[9]=computer;
-			
-			
-			
-			if(k!=0)
-			{	
-				if (board[k] == ' ')
-				{
-					System.out.println("Index is free");
-					board[k] = computer;
-					displayBoard();
-					System.out.println("\nUser's turn");
-					stop = true;
-					userMove(player);
-				}
-				else
-				{
-					System.out.println("Index is not free");
-				}
+						int k = (int) Math.floor(Math.random()*100)%10;
+		
+						if(k!=0)
+						{	
+							if (board[k] == ' ')
+							{
+								System.out.println("Index is free");
+								board[k] = computer;
+								displayBoard();
+								System.out.println("\nUser's turn");
+								stop = true;
+								userMove();
+							}
+							else
+							{
+								System.out.println("Index is not free");
+							}
+						}
+					}	
+				}	
 			}
 		}
-	}
 	
 	
 	
@@ -177,18 +250,18 @@ public class TicTacToeGame
 		if (t==1)
 		{
 			System.out.println("\nPlayer will make first move");
-			userMove(player);
+			userMove();
 		}
 		else
 		{
 			System.out.println("\nComputer will make first move");
-			computerMove(computer);
+			computerMove();
 		}
 	}
 	
 	
 	
-	private static boolean winningCondition(char ch)
+	private static boolean winningCondition(char ch)     // winning condition for players
 	{
 		return((board[1] == ch && board[2] == ch && board[3] == ch)
 				|| (board[4] == ch && board[5] == ch && board[6] == ch)
