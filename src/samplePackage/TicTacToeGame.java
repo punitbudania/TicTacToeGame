@@ -14,7 +14,7 @@ public class TicTacToeGame
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to Tic Tac Toe Game");
 		gamePlay();
-		/*
+		
 		boolean again = false;
 		while(!again)
 		{
@@ -31,7 +31,7 @@ public class TicTacToeGame
 			{
 				again = true;
 			}
-		}*/
+		}
 	}
 	
 	
